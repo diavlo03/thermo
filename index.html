@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thermodynamics Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0 0 3rem 0; /* To avoid footer overlap */
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: #222;
+    }
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      text-align: center;
+      background-color: #444;
+      padding: 0.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.5rem;
+      margin-top: 2rem;
+    }
+    .quiz {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+    }
+    .quiz label {
+      display: block;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+    }
+    @media (max-width: 600px) {
+      nav a {
+        display: block;
+        margin: 0.5rem 0;
+      }
+      section {
+        padding: 1rem;
+      }
+    }
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Thermodynamics Report</h1>
+    <p>Heat Engines, Second Law, and Entropy</p>
+  </header>
+
+  <nav>
+    <a href="#intro">Introduction</a>
+    <a href="#heat-engines">Heat Engines</a>
+    <a href="#second-law">Second Law</a>
+    <a href="#entropy">Entropy</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#references">References</a>
+  </nav>
+
+  <section id="intro">
+    <h2>Introduction</h2>
+    <p>
+      This report explores the core concepts of thermodynamics, focusing on heat engines, internal-combustion engines, refrigerators, the second law of thermodynamics, and entropy. These principles are fundamental to understanding how energy is transformed and transferred in physical systems.
+    </p>
+  </section>
+
+  <section id="heat-engines">
+    <h2>Heat Engines, Internal-Combustion Engines, and Refrigerators</h2>
+    <h3>Heat Engines</h3>
+    <p>
+      A heat engine is a device that converts thermal energy into mechanical work by exploiting the temperature difference between a hot and a cold reservoir. Classic examples include steam engines and car engines. The engine absorbs heat (\(Q_{in}\)) from the hot reservoir, performs work (\(W\)), and expels some heat (\(Q_{out}\)) to the cold reservoir.
+    </p>
+    <h3>Internal-Combustion Engines</h3>
+    <p>
+      Internal-combustion engines burn fuel in a confined space (the combustion chamber), producing expanding gases that do work on moving parts. Examples include gasoline and diesel engines found in most vehicles.
+    </p>
+    <h3>Refrigerators</h3>
+    <p>
+      Refrigerators work on the reverse principle of heat engines. Instead of converting heat to work, they use external work to transfer heat from a cold space (inside the fridge) to a warmer one (the room), thus keeping the contents cool.
+    </p>
+  </section>
+
+  <section id="second-law">
+    <h2>Second Law of Thermodynamics (Law of State of Disorder)</h2>
+    <p>
+      The second law of thermodynamics states that the entropy (a measure of disorder) of an isolated system always increases or remains constant over time; it never decreases. This law explains why processes like mixing, burning fuel, or melting ice are irreversible in nature. In essence, energy spontaneously spreads out if not hindered.
+    </p>
+    <ul>
+      <li><strong>Heat engines</strong> cannot convert all received heat into work—some energy is always lost as waste heat.</li>
+      <li><strong>Entropy</strong> quantifies the amount of disorder or randomness in a system.</li>
+    </ul>
+  </section>
+
+  <section id="entropy">
+    <h2>Entropy and Third Law of Thermodynamics (Law of Absolute Zero)</h2>
+    <p>
+      <strong>Entropy (\(S\))</strong> increases as energy disperses in a system. When a system reaches absolute zero temperature (0 Kelvin), the third law of thermodynamics states its entropy approaches a minimum value (often zero for a perfect crystal).
+    </p>
+    <h3>Key Formulas</h3>
+    <ul>
+      <li>Efficiency of a heat engine: <strong>\(\eta = \frac{W}{Q_{in}}\)</strong></li>
+      <li>Entropy change: <strong>\(\Delta S = \frac{Q}{T}\)</strong></li>
+    </ul>
+  </section>
+
+  <section id="quiz" class="quiz">
+    <h2>Quiz</h2>
+    <form id="thermo-quiz">
+      <p><strong>Q1:</strong> What does the second law of thermodynamics imply about entropy?</p>
+      <label>
+        <input type="radio" name="q1" value="A" />
+        It decreases in isolated systems
+      </label>
+      <label>
+        <input type="radio" name="q1" value="B" />
+        It stays constant in all systems
+      </label>
+      <label>
+        <input type="radio" name="q1" value="C" />
+        It increases in isolated systems
+      </label>
+      <button type="button" onclick="checkQuiz()">Check Answer</button>
+      <p id="quiz-result"></p>
+    </form>
+    <script>
+      function checkQuiz() {
+        const quiz = document.getElementById('thermo-quiz');
+        const selected = quiz.q1.value;
+        const result = document.getElementById('quiz-result');
+        if (selected === "C") {
+          result.textContent = "Correct! Entropy increases in isolated systems.";
+          result.style.color = "green";
+        } else if (selected) {
+          result.textContent = "Incorrect. Remember, the second law says entropy increases in isolated systems.";
+          result.style.color = "red";
+        } else {
+          result.textContent = "Please select an answer.";
+          result.style.color = "orange";
+        }
+      }
+    </script>
+  </section>
+
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li>Serway, R.A., & Jewett, J.W. <em>Physics for Scientists and Engineers</em></li>
+      <li><a href="https://physics.info/thermodynamics" target="_blank">Physics.info: Thermodynamics</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Thermodynamics" target="_blank">Wikipedia: Thermodynamics</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Physics 2 Report Group</p>
+  </footer>
+</body>
+</html>
