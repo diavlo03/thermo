@@ -3,139 +3,317 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thermodynamics Report</title>
+  <title>LAWS OF THERMODYNAMICS AND HEAT ENGINES</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', Arial, sans-serif;
       margin: 0;
-      padding: 0 0 3rem 0; /* To avoid footer overlap */
-      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      padding: 0 0 3rem 0;
       color: #222;
+      background: #1a0900;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    #fire-canvas {
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      display: block;
     }
     header {
-      background-color: #222;
+      background-color: rgba(34, 34, 34, 0.92);
       color: #fff;
-      padding: 1rem;
+      padding: 1.5rem 1rem 1rem 1rem;
       text-align: center;
+      letter-spacing: 2px;
+      box-shadow: 0 6px 20px -10px #222a;
+      animation: fadeInDown 1.2s;
     }
-    nav {
-      text-align: center;
-      background-color: #444;
-      padding: 0.5rem;
+    @keyframes fadeInDown {
+      from { transform: translateY(-40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
-    nav a {
-      margin: 0 1rem;
+    .nav-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      background: #444c;
+      padding: 1rem 0.5rem;
+      box-shadow: 0 4px 12px -8px #222a;
+      animation: fadeInDown 1.7s;
+    }
+    .nav-btn {
+      background: #e02c00;
       color: #fff;
-      text-decoration: none;
+      border: none;
+      outline: none;
+      font-size: 1.05rem;
+      font-family: inherit;
+      padding: 0.7em 1.5em;
+      margin: 0.2em 0;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px -2px #ff800066;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: #ff8000;
+      color: #fff;
+      transform: scale(1.06);
+      box-shadow: 0 4px 16px -4px #ff8000aa;
     }
     section {
       padding: 2rem;
-      max-width: 800px;
-      margin: auto;
+      max-width: 850px;
+      margin: 2.5rem auto 0 auto;
+      background: rgba(255,255,255,0.87);
+      border-radius: 18px;
+      box-shadow: 0 4px 32px -8px #0002;
+      transition: box-shadow 0.6s;
+      animation: fadeIn 1.2s;
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98);}
+      to { opacity: 1; transform: scale(1);}
     }
     h2 {
       border-bottom: 2px solid #444;
       padding-bottom: 0.5rem;
       margin-top: 2rem;
+      letter-spacing: 1.5px;
+      animation: slideInLeft 1s;
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-60px); opacity: 0;}
+      to { transform: translateX(0); opacity: 1;}
+    }
+    h3 {
+      margin-top: 1.6rem;
+      color: #e02c00;
+      letter-spacing: 1px;
+      animation: fadeIn 1.6s;
+    }
+    .law-tag {
+      display: inline-block;
+      background: #fa8900;
+      color: #fff;
+      border-radius: 6px;
+      padding: 0.2em 0.8em;
+      font-size: 0.95em;
+      margin-bottom: 0.8em;
+      margin-top: 0.4em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .formula {
+      display: inline-block;
+      background: #f8e4bd;
+      border-radius: 5px;
+      padding: 0.25em 0.7em;
+      font-family: 'Consolas', 'Menlo', 'Monaco', 'monospace';
+      font-size: 1.1em;
+      margin: 0.3em 0;
     }
     .quiz {
       margin-top: 2rem;
-      padding: 1rem;
-      background: #fff3cd;
+      padding: 1.2rem;
+      background: linear-gradient(120deg,#fff3cd 70%,#ffdde1 100%);
       border: 1px solid #ffeeba;
-      border-radius: 8px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px -6px #2222;
+      animation: pulse 2s infinite alternate;
+    }
+    @keyframes pulse {
+      from { box-shadow: 0 2px 10px -6px #2222;}
+      to { box-shadow: 0 6px 20px -10px #ff8000;}
     }
     .quiz label {
       display: block;
       margin-bottom: 0.5rem;
       cursor: pointer;
+      transition: background 0.2s, padding 0.2s;
+      border-radius: 6px;
+      padding: 4px 8px;
     }
-    footer {
-      background-color: #222;
+    .quiz label:hover {
+      background: #ffeeba;
+      padding-left: 16px;
+    }
+    button[type="button"] {
+      margin-top: 0.8rem;
+      padding: 0.5rem 1.4rem;
+      background: #e02c00;
       color: #fff;
-      text-align: center;
-      padding: 1rem;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-      left: 0;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px -2px #ff800066;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      font-size: 1rem;
+      letter-spacing: 1px;
     }
-    @media (max-width: 600px) {
-      nav a {
-        display: block;
-        margin: 0.5rem 0;
-      }
-      section {
-        padding: 1rem;
-      }
+    button[type="button"]:hover {
+      background: #ff8000;
+      transform: scale(1.08);
+    }
+    #quiz-result {
+      margin-top: 0.7rem;
+      font-weight: bold;
+      min-height: 1.5em;
     }
     img, video {
       max-width: 100%;
       height: auto;
       display: block;
-      margin: 1rem auto;
+      margin: 1.5rem auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px -6px #e02c0066;
+      animation: fadeIn 2s;
+    }
+    ul {
+      padding-left: 1.2em;
+      animation: fadeIn 2.2s;
+    }
+    @media (max-width: 600px) {
+      .nav-btn-group { flex-direction: column; gap: 0.5rem; }
+      section { padding: 1rem; }
     }
   </style>
 </head>
 <body>
+  <canvas id="fire-canvas"></canvas>
   <header>
-    <h1>Thermodynamics Report</h1>
-    <p>Heat Engines, Second Law, and Entropy</p>
+    <h1>LAWS OF THERMODYNAMICS AND HEAT ENGINES</h1>
   </header>
-
-  <nav>
-    <a href="#intro">Introduction</a>
-    <a href="#heat-engines">Heat Engines</a>
-    <a href="#second-law">Second Law</a>
-    <a href="#entropy">Entropy</a>
-    <a href="#quiz">Quiz</a>
-    <a href="#references">References</a>
+  <nav class="nav-btn-group" id="navBtnGroup">
+    <button class="nav-btn active" data-target="intro">Introduction</button>
+    <button class="nav-btn" data-target="heat-engines">Heat Engines</button>
+    <button class="nav-btn" data-target="internal-combustion">Internal-Combustion Engines</button>
+    <button class="nav-btn" data-target="refrigerators">Refrigerators</button>
+    <button class="nav-btn" data-target="second-law">Second Law</button>
+    <button class="nav-btn" data-target="entropy">Entropy</button>
+    <button class="nav-btn" data-target="quiz">Quiz</button>
+    <button class="nav-btn" data-target="references">References</button>
   </nav>
 
-  <section id="intro">
+  <section id="intro" class="active">
     <h2>Introduction</h2>
     <p>
-      This report explores the core concepts of thermodynamics, focusing on heat engines, internal-combustion engines, refrigerators, the second law of thermodynamics, and entropy. These principles are fundamental to understanding how energy is transformed and transferred in physical systems.
+      The laws of thermodynamics describe how energy moves and changes in the universe. These principles set the foundation for understanding physical processes such as heat transfer, energy conversion, and the operation of engines and refrigerators. In this report, we will examine the core concepts and principles behind heat engines, internal-combustion engines, refrigerators, the second law of thermodynamics, and entropy.
     </p>
   </section>
 
   <section id="heat-engines">
-    <h2>Heat Engines, Internal-Combustion Engines, and Refrigerators</h2>
-    <h3>Heat Engines</h3>
+    <h2>Heat Engines</h2>
+    <div class="law-tag">Illustrates: 1st &amp; 2nd Laws</div>
     <p>
-      A heat engine is a device that converts thermal energy into mechanical work by exploiting the temperature difference between a hot and a cold reservoir. Classic examples include steam engines and car engines. The engine absorbs heat (\(Q_{in}\)) from the hot reservoir, performs work (\(W\)), and expels some heat (\(Q_{out}\)) to the cold reservoir.
+      <strong>Heat engines</strong> are devices that convert thermal energy into mechanical work by exploiting the temperature difference between a hot reservoir and a cold reservoir. The basic principle is that heat flows naturally from hot to cold, and a heat engine harnesses a portion of this flow to perform work (such as moving a piston or turning a turbine). 
     </p>
-    <h3>Internal-Combustion Engines</h3>
+    <ul>
+      <li>The engine absorbs heat energy (<span class="formula">Q<sub>in</sub></span>) from the hot reservoir.</li>
+      <li>Part of this energy is converted into useful work (<span class="formula">W</span>).</li>
+      <li>The remaining energy is expelled as waste heat (<span class="formula">Q<sub>out</sub></span>) to the cold reservoir.</li>
+    </ul>
     <p>
-      Internal-combustion engines burn fuel in a confined space (the combustion chamber), producing expanding gases that do work on moving parts. Examples include gasoline and diesel engines found in most vehicles.
+      The <strong>First Law of Thermodynamics</strong> (law of energy conservation) is honored as energy is neither created nor destroyed—just transferred and transformed.<br>
+      The <strong>Second Law of Thermodynamics</strong> is illustrated because not all input heat can become work; some energy must be expelled as waste heat.
     </p>
-    <h3>Refrigerators</h3>
     <p>
-      Refrigerators work on the reverse principle of heat engines. Instead of converting heat to work, they use external work to transfer heat from a cold space (inside the fridge) to a warmer one (the room), thus keeping the contents cool.
+      Efficiency of a heat engine:
+      <span class="formula">&eta; = W / Q<sub>in</sub></span>
+      <br>
+      or, equivalently:
+      <span class="formula">&eta; = 1 - (Q<sub>out</sub> / Q<sub>in</sub>)</span>
     </p>
+    <!-- Placeholder for heat engine image -->
+    <!-- <img src="your-heat-engine-image.jpg" alt="Heat Engine Diagram" /> -->
+  </section>
+
+  <section id="internal-combustion">
+    <h2>Internal-Combustion Engines</h2>
+    <div class="law-tag">Illustrates: 1st &amp; 2nd Laws</div>
+    <p>
+      <strong>Internal-combustion engines</strong> are a specific type of heat engine in which the combustion of fuel occurs inside the working chamber (such as a cylinder). The rapid burning of fuel produces high-pressure gases, which push against pistons or turn turbines, directly converting chemical energy into mechanical work. 
+    </p>
+    <ul>
+      <li>Commonly used in cars, motorcycles, and airplanes.</li>
+      <li>Examples include gasoline engines and diesel engines.</li>
+      <li>They rely on cycles (such as the Otto or Diesel cycle) to manage intake, compression, power, and exhaust strokes.</li>
+    </ul>
+    <p>
+      Internal-combustion engines follow the <strong>First Law of Thermodynamics</strong> as chemical (fuel) energy is transformed into work and heat.<br>
+      The <strong>Second Law of Thermodynamics</strong> appears as not all fuel energy is converted to work—some is always lost as heat and exhaust.
+    </p>
+    <!-- Placeholder for internal-combustion engine image -->
+    <!-- <img src="your-internal-combustion-image.jpg" alt="Internal Combustion Engine Diagram" /> -->
+  </section>
+
+  <section id="refrigerators">
+    <h2>Refrigerators</h2>
+    <div class="law-tag">Illustrates: 1st &amp; 2nd Laws</div>
+    <p>
+      <strong>Refrigerators</strong> are devices that use work to transfer heat from a low-temperature area (inside the fridge) to a high-temperature area (outside the fridge). This process is essentially the reverse of a heat engine. Instead of converting heat to work, refrigerators use work (usually provided by an electric compressor) to move heat against its natural direction.
+    </p>
+    <ul>
+      <li>Heat is removed from the cold interior and expelled to the warmer environment.</li>
+      <li>This process requires external energy input.</li>
+      <li>Examples include home refrigerators, air conditioners, and heat pumps.</li>
+    </ul>
+    <p>
+      According to the <strong>First Law of Thermodynamics</strong>, the total energy is conserved (work input plus heat taken from the cold area equals heat expelled to the warm area).<br>
+      The <strong>Second Law of Thermodynamics</strong> explains why refrigerators need external work: heat doesn’t spontaneously flow from cold to hot.
+    </p>
+    <p>
+      Coefficient of Performance (COP) for refrigerators:
+      <span class="formula">COP = Q<sub>cold</sub> / W</span>
+    </p>
+    <!-- Placeholder for refrigerator image -->
+    <!-- <img src="your-refrigerator-image.jpg" alt="Refrigerator Diagram" /> -->
   </section>
 
   <section id="second-law">
-    <h2>Second Law of Thermodynamics (Law of State of Disorder)</h2>
+    <h2>Second Law of Thermodynamics</h2>
+    <div class="law-tag">The Law of Entropy/Irreversibility</div>
     <p>
-      The second law of thermodynamics states that the entropy (a measure of disorder) of an isolated system always increases or remains constant over time; it never decreases. This law explains why processes like mixing, burning fuel, or melting ice are irreversible in nature. In essence, energy spontaneously spreads out if not hindered.
+      The <strong>Second Law of Thermodynamics</strong> states that the total entropy of an isolated system can never decrease over time; it can only increase or remain constant. This law explains why certain processes occur spontaneously (such as heat flowing from hot to cold) and why energy conversions are never 100% efficient.
     </p>
     <ul>
-      <li><strong>Heat engines</strong> cannot convert all received heat into work—some energy is always lost as waste heat.</li>
-      <li><strong>Entropy</strong> quantifies the amount of disorder or randomness in a system.</li>
+      <li>No heat engine can convert all absorbed heat into work; some energy is always lost as waste heat.</li>
+      <li>The direction of natural processes is governed by an increase in entropy (disorder).</li>
+      <li>This law introduces the concept of irreversibility in real-world systems.</li>
     </ul>
   </section>
 
   <section id="entropy">
-    <h2>Entropy and Third Law of Thermodynamics (Law of Absolute Zero)</h2>
+    <h2>Entropy and the Third Law of Thermodynamics</h2>
+    <div class="law-tag">The Law of Absolute Zero</div>
     <p>
-      <strong>Entropy (\(S\))</strong> increases as energy disperses in a system. When a system reaches absolute zero temperature (0 Kelvin), the third law of thermodynamics states its entropy approaches a minimum value (often zero for a perfect crystal).
+      <strong>Entropy</strong> is a measure of disorder or randomness in a system. As energy becomes more evenly distributed, entropy increases. The <strong>Third Law of Thermodynamics</strong> states that as the temperature of a perfect crystal approaches absolute zero (0 Kelvin), its entropy approaches zero.
     </p>
+    <ul>
+      <li>Entropy helps predict the direction of chemical and physical processes.</li>
+      <li>High entropy means high disorder (e.g., gas molecules spread out in a room).</li>
+      <li>At absolute zero, a system is in perfect order with minimum possible entropy.</li>
+    </ul>
     <h3>Key Formulas</h3>
     <ul>
-      <li>Efficiency of a heat engine: <strong>\(\eta = \frac{W}{Q_{in}}\)</strong></li>
-      <li>Entropy change: <strong>\(\Delta S = \frac{Q}{T}\)</strong></li>
+      <li><span class="formula">&eta; = W / Q<sub>in</sub></span> &nbsp; <em>(Efficiency of a heat engine)</em></li>
+      <li><span class="formula">&Delta;S = Q / T</span> &nbsp; <em>(Change in entropy, where Q = heat transferred, T = temperature in Kelvin)</em></li>
     </ul>
+    <!-- Placeholder for entropy diagram -->
+    <!-- <img src="your-entropy-image.jpg" alt="Entropy Diagram" /> -->
   </section>
 
   <section id="quiz" class="quiz">
@@ -154,24 +332,67 @@
         <input type="radio" name="q1" value="C" />
         It increases in isolated systems
       </label>
-      <button type="button" onclick="checkQuiz()">Check Answer</button>
+      <p><strong>Q2:</strong> What is the main function of a heat engine?</p>
+      <label>
+        <input type="radio" name="q2" value="A" />
+        To transfer heat from a cold reservoir to a hot reservoir
+      </label>
+      <label>
+        <input type="radio" name="q2" value="B" />
+        To convert thermal energy into mechanical work
+      </label>
+      <label>
+        <input type="radio" name="q2" value="C" />
+        To decrease the entropy of the universe
+      </label>
+      <p><strong>Q3:</strong> According to the third law of thermodynamics, as temperature approaches absolute zero, the entropy of a perfect crystal:</p>
+      <label>
+        <input type="radio" name="q3" value="A" />
+        Becomes infinite
+      </label>
+      <label>
+        <input type="radio" name="q3" value="B" />
+        Approaches zero
+      </label>
+      <label>
+        <input type="radio" name="q3" value="C" />
+        Remains the same as at room temperature
+      </label>
+      <button type="button" onclick="checkQuiz()">Check Answers</button>
       <p id="quiz-result"></p>
     </form>
     <script>
       function checkQuiz() {
         const quiz = document.getElementById('thermo-quiz');
-        const selected = quiz.q1.value;
-        const result = document.getElementById('quiz-result');
-        if (selected === "C") {
-          result.textContent = "Correct! Entropy increases in isolated systems.";
-          result.style.color = "green";
-        } else if (selected) {
-          result.textContent = "Incorrect. Remember, the second law says entropy increases in isolated systems.";
-          result.style.color = "red";
+        let score = 0;
+        let feedback = [];
+        if (quiz.q1.value === "C") {
+          score++;
+          feedback.push("Q1: Correct!");
+        } else if (quiz.q1.value) {
+          feedback.push("Q1: Incorrect. Entropy increases in isolated systems.");
         } else {
-          result.textContent = "Please select an answer.";
-          result.style.color = "orange";
+          feedback.push("Q1: Not answered.");
         }
+        if (quiz.q2.value === "B") {
+          score++;
+          feedback.push("Q2: Correct!");
+        } else if (quiz.q2.value) {
+          feedback.push("Q2: Incorrect. The main function is to convert thermal energy into mechanical work.");
+        } else {
+          feedback.push("Q2: Not answered.");
+        }
+        if (quiz.q3.value === "B") {
+          score++;
+          feedback.push("Q3: Correct!");
+        } else if (quiz.q3.value) {
+          feedback.push("Q3: Incorrect. Entropy approaches zero.");
+        } else {
+          feedback.push("Q3: Not answered.");
+        }
+        const result = document.getElementById('quiz-result');
+        result.innerHTML = feedback.join("<br>") + `<br><br><span style="font-size:1.1em;">Your Score: ${score}/3</span>`;
+        result.style.color = score === 3 ? "green" : (score >= 2 ? "#fa8900" : "red");
       }
     </script>
   </section>
@@ -182,11 +403,146 @@
       <li>Serway, R.A., & Jewett, J.W. <em>Physics for Scientists and Engineers</em></li>
       <li><a href="https://physics.info/thermodynamics" target="_blank">Physics.info: Thermodynamics</a></li>
       <li><a href="https://en.wikipedia.org/wiki/Thermodynamics" target="_blank">Wikipedia: Thermodynamics</a></li>
+      <li><a href="https://www.ck12.org/physics/laws-of-thermodynamics/" target="_blank">CK-12: Laws of Thermodynamics</a></li>
+      <li><a href="https://www.ck12.org/physics/heat-engines/" target="_blank">CK-12: Heat Engines</a></li>
+      <li><a href="https://www.ck12.org/physics/refrigerators-and-heat-pumps/" target="_blank">CK-12: Refrigerators and Heat Pumps</a></li>
+      <li><a href="https://www.ck12.org/physics/entropy/" target="_blank">CK-12: Entropy</a></li>
     </ul>
   </section>
+  <script>
+    // Section show/hide logic for button nav
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.getAttribute('data-target');
+        document.querySelectorAll('section').forEach(sec => {
+          if (sec.id === target) sec.classList.add('active');
+          else sec.classList.remove('active');
+        });
+        // Scroll to top for mobile usability
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
 
-  <footer>
-    <p>&copy; 2025 Physics 2 Report Group</p>
-  </footer>
+    // Fire and sparks/embers particle animation
+    const canvas = document.getElementById('fire-canvas');
+    const ctx = canvas.getContext('2d');
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    function resizeCanvas() {
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const fireParticles = [];
+    const emberParticles = [];
+    function randomBetween(a,b) { return a + Math.random()*(b-a); }
+    function newFireParticle() {
+      // Make the fire wider and taller
+      const baseX = W/2 + randomBetween(-160,160);
+      return {
+        x: baseX + randomBetween(-40,40),
+        y: H - 90 + randomBetween(-20,20),
+        vx: randomBetween(-1.3,1.3),
+        vy: randomBetween(-5.5,-2.2),
+        radius: randomBetween(34,68),
+        age: 0,
+        maxAge: randomBetween(85,160),
+        baseHue: randomBetween(26,48),
+        alpha: randomBetween(0.18,0.36)
+      };
+    }
+    function newEmberParticle() {
+      // Embers are smaller, fly higher, and are more orange/yellow
+      const baseX = W/2 + randomBetween(-120,120);
+      return {
+        x: baseX + randomBetween(-30,30),
+        y: H - 100 + randomBetween(-18,18),
+        vx: randomBetween(-0.7,0.7),
+        vy: randomBetween(-5.8,-2.8),
+        radius: randomBetween(2.2,5.5),
+        age: 0,
+        maxAge: randomBetween(60,170),
+        hue: randomBetween(26,46),
+        sat: randomBetween(70,98),
+        light: randomBetween(56,80),
+        alpha: randomBetween(0.14,0.32)
+      };
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      // Fire glow
+      let grad = ctx.createRadialGradient(W/2, H-60, 0, W/2, H-60, 220);
+      grad.addColorStop(0, "rgba(255,170,50,0.21)");
+      grad.addColorStop(1, "rgba(255,170,50,0)");
+      ctx.beginPath();
+      ctx.arc(W/2, H-60, 220, 0, 2*Math.PI);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Add new fire particles
+      if (fireParticles.length < 130) {
+        for (let i=0;i<4;i++) fireParticles.push(newFireParticle());
+      }
+      // Add ember particles (sparks)
+      if (emberParticles.length < 34 && Math.random() < 0.7) {
+        emberParticles.push(newEmberParticle());
+      }
+
+      // Draw embers first (so fire is in front)
+      for (let i=emberParticles.length-1;i>=0;i--) {
+        let p = emberParticles[i];
+        // Flicker and physics
+        p.x += p.vx + randomBetween(-0.19,0.19);
+        p.y += p.vy + randomBetween(-0.28,-0.04);
+        p.radius *= randomBetween(0.98,1.02);
+        p.age++;
+        // Ember color
+        let hue = p.hue + Math.sin(Date.now()/90 + p.x*0.06)*5;
+        let sat = p.sat + randomBetween(-10,8);
+        let light = p.light + Math.sin(Date.now()/140 + p.y*0.03)*12;
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.alpha * (1 - p.age/p.maxAge));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, 2*Math.PI);
+        ctx.fillStyle = `hsl(${hue},${sat}%,${light}%)`;
+        ctx.shadowColor = "#ffd580";
+        ctx.shadowBlur = 16 + Math.random()*6;
+        ctx.fill();
+        ctx.restore();
+        // Remove if too old
+        if (p.age > p.maxAge || p.radius < 0.8 || p.y < 0) emberParticles.splice(i,1);
+      }
+
+      // Draw fire particles
+      for (let i=fireParticles.length-1;i>=0;i--) {
+        let p = fireParticles[i];
+        p.x += p.vx + randomBetween(-0.36,0.36);
+        p.y += p.vy + randomBetween(-0.14,0.14);
+        p.radius *= randomBetween(0.97,1.01);
+        p.age++;
+        let flicker = Math.sin(Date.now()/66 + p.x*0.1)*randomBetween(1,2.3);
+        let hue = p.baseHue + flicker*4 + p.age*0.24;
+        let sat = 97 - Math.min(p.age*0.33,36);
+        let light = 54 + flicker*10 - (p.age*0.22);
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.alpha * (1 - p.age/p.maxAge));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, 2*Math.PI);
+        ctx.fillStyle = `hsl(${hue},${sat}%,${light}%)`;
+        ctx.shadowColor = "#ff9900";
+        ctx.shadowBlur = 38 + flicker*4;
+        ctx.fill();
+        ctx.restore();
+        if (p.age > p.maxAge || p.radius < 2) fireParticles.splice(i,1);
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
 </body>
 </html>
