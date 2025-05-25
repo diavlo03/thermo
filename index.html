@@ -488,167 +488,9 @@
 
     <section id="quiz" class="quiz">
       <h2>Quiz</h2>
-      <form id="thermo-quiz">
-        <ol id="quiz-questions" style="padding-left: 2em;"></ol>
-        <button type="button" onclick="checkQuiz()">Check Answers</button>
-        <p id="quiz-result"></p>
-      </form>
-      <script>
-        // 10-question comprehensive quiz reflecting all updated topic information, with indented, formal layout and organized numbering
-        const quizData = [
-          {
-            q: "What is the primary role of a heat engine?",
-            choices: [
-              "A. To transfer heat from a cold reservoir to a hot reservoir",
-              "B. To convert thermal energy into mechanical work using heat flow from hot to cold",
-              "C. To create energy from nothing",
-              "D. To decrease the temperature of its environment"
-            ],
-            correct: 1
-          },
-          {
-            q: "In a heat engine, which formula correctly expresses efficiency (η)?",
-            choices: [
-              "A. η = Q<sub>out</sub> / Q<sub>in</sub>",
-              "B. η = W / Q<sub>in</sub>",
-              "C. η = Q<sub>in</sub> / W",
-              "D. η = Q / T"
-            ],
-            correct: 1
-          },
-          {
-            q: "Which part of an internal combustion engine is responsible for igniting the fuel-air mixture in a gasoline engine?",
-            choices: [
-              "A. Piston",
-              "B. Spark Plug",
-              "C. Crankshaft",
-              "D. Exhaust Valve"
-            ],
-            correct: 1
-          },
-          {
-            q: "During which stroke of the four-stroke cycle does the piston expel burnt gases from the cylinder?",
-            choices: [
-              "A. Intake Stroke",
-              "B. Compression Stroke",
-              "C. Power (Combustion) Stroke",
-              "D. Exhaust Stroke"
-            ],
-            correct: 3
-          },
-          {
-            q: "What is the main function of a refrigerator, in terms of thermodynamics?",
-            choices: [
-              "A. To convert work into heat",
-              "B. To use work to move heat from a cold area to a hot area",
-              "C. To generate electricity from heat",
-              "D. To transfer heat spontaneously from hot to cold"
-            ],
-            correct: 1
-          },
-          {
-            q: "What is the correct formula for the coefficient of performance (COP) of a refrigerator?",
-            choices: [
-              "A. COP = Q<sub>hot</sub> / W",
-              "B. COP = W / Q<sub>cold</sub>",
-              "C. COP = Q<sub>cold</sub> / W",
-              "D. COP = Q<sub>in</sub> / Q<sub>out</sub>"
-            ],
-            correct: 2
-          },
-          {
-            q: "According to the Second Law of Thermodynamics, what always increases in an isolated system?",
-            choices: [
-              "A. Temperature",
-              "B. Entropy",
-              "C. Pressure",
-              "D. Mechanical Work"
-            ],
-            correct: 1
-          },
-          {
-            q: "What does the diagram of the Second Law of Thermodynamics demonstrate?",
-            choices: [
-              "A. Energy can be fully converted to work without any loss",
-              "B. Heat naturally flows from cold to hot",
-              "C. Some energy is always lost as waste heat; 100% conversion to work is impossible",
-              "D. Work is not needed to move heat"
-            ],
-            correct: 2
-          },
-          {
-            q: "What does entropy measure in a system?",
-            choices: [
-              "A. Pressure",
-              "B. Amount of work done",
-              "C. Disorder or randomness",
-              "D. Energy lost as sound"
-            ],
-            correct: 2
-          },
-          {
-            q: "According to the Third Law of Thermodynamics, what happens to the entropy of a perfect crystal at absolute zero?",
-            choices: [
-              "A. It becomes infinite",
-              "B. It remains constant at any temperature",
-              "C. It approaches zero",
-              "D. It doubles"
-            ],
-            correct: 2
-          }
-        ];
-
-        // Render quiz questions with proper indention and numbering
-        const ol = document.getElementById('quiz-questions');
-        quizData.forEach((q, i) => {
-          const li = document.createElement('li');
-          li.style.marginBottom = '1.7em';
-          li.style.paddingLeft = '0.3em';
-          li.innerHTML = `<div style="margin-bottom:0.8em; font-weight:600;">${q.q}</div>`;
-          q.choices.forEach((choice, cidx) => {
-            const inputId = `q${i}_c${cidx}`;
-            li.innerHTML += `
-              <label style="display:block; margin-left:2.2em; padding-bottom:0.3em;">
-                <input type="radio" name="q${i}" value="${cidx}" id="${inputId}" style="margin-right:0.5em;"> <span>${choice}</span>
-              </label>
-            `;
-          });
-          ol.appendChild(li);
-        });
-
-        function checkQuiz() {
-          let score = 0;
-          let feedback = [];
-          let wrongs = [];
-          for (let i = 0; i < quizData.length; i++) {
-            const radios = document.getElementsByName('q' + i);
-            let answered = false;
-            let val = null;
-            for (let r of radios) {
-              if (r.checked) {
-                answered = true;
-                val = parseInt(r.value);
-                break;
-              }
-            }
-            if (answered) {
-              if (val === quizData[i].correct) {
-                score++;
-                feedback.push(`<span style="margin-left:1.5em;">Q${i+1}: <span style='color:green'>Correct!</span></span>`);
-              } else {
-                feedback.push(`<span style="margin-left:1.5em;">Q${i+1}: <span style='color:red'>Incorrect.</span> Correct answer is: <b>${quizData[i].choices[quizData[i].correct]}</b></span>`);
-                wrongs.push(i+1);
-              }
-            } else {
-              feedback.push(`<span style="margin-left:1.5em;">Q${i+1}: <span style='color:#fa8900'>Not answered.</span></span>`);
-              wrongs.push(i+1);
-            }
-          }
-          const result = document.getElementById('quiz-result');
-          result.innerHTML = feedback.join("<br>") + `<br><br><span style="font-size:1.1em;">Your Score: ${score}/${quizData.length}</span>`;
-          result.style.color = score === quizData.length ? "green" : (score >= quizData.length*0.7 ? "#fa8900" : "red");
-        }
-      </script>
+      <div style="width:100%;max-width:700px;margin:0 auto;">
+        <iframe src="https://forms.gle/u3yJ3sBBcUxmi1y2A" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0" style="background:#fff;border-radius:12px;box-shadow:0 2px 12px -2px #e02c0066;" allowfullscreen>Loading…</iframe>
+      </div>
     </section>
 
     <section id="references">
@@ -664,7 +506,6 @@
     </section>
 
     <script>
-      // Section show/hide logic for button nav and next/proceed buttons
       function showSection(target) {
         document.querySelectorAll('section').forEach(sec => {
           if (sec.id === target) sec.classList.add('active');
@@ -689,7 +530,6 @@
         });
       });
 
-      // Fire and sparks/embers particle animation
       const canvas = document.getElementById('fire-canvas');
       const ctx = canvas.getContext('2d');
       let W = window.innerWidth;
@@ -706,7 +546,6 @@
       const emberParticles = [];
       function randomBetween(a,b) { return a + Math.random()*(b-a); }
       function newFireParticle() {
-        // Make the fire wider and taller
         const baseX = W/2 + randomBetween(-160,160);
         return {
           x: baseX + randomBetween(-40,40),
@@ -721,7 +560,6 @@
         };
       }
       function newEmberParticle() {
-        // Embers are smaller, fly higher, and are more orange/yellow
         const baseX = W/2 + randomBetween(-120,120);
         return {
           x: baseX + randomBetween(-30,30),
@@ -739,7 +577,6 @@
       }
       function draw() {
         ctx.clearRect(0, 0, W, H);
-        // Fire glow
         let grad = ctx.createRadialGradient(W/2, H-60, 0, W/2, H-60, 220);
         grad.addColorStop(0, "rgba(255,170,50,0.21)");
         grad.addColorStop(1, "rgba(255,170,50,0)");
@@ -748,24 +585,19 @@
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Add new fire particles
         if (fireParticles.length < 130) {
           for (let i=0;i<4;i++) fireParticles.push(newFireParticle());
         }
-        // Add ember particles (sparks)
         if (emberParticles.length < 34 && Math.random() < 0.7) {
           emberParticles.push(newEmberParticle());
         }
 
-        // Draw embers first (so fire is in front)
         for (let i=emberParticles.length-1;i>=0;i--) {
           let p = emberParticles[i];
-          // Flicker and physics
           p.x += p.vx + randomBetween(-0.19,0.19);
           p.y += p.vy + randomBetween(-0.28,-0.04);
           p.radius *= randomBetween(0.98,1.02);
           p.age++;
-          // Ember color
           let hue = p.hue + Math.sin(Date.now()/90 + p.x*0.06)*5;
           let sat = p.sat + randomBetween(-10,8);
           let light = p.light + Math.sin(Date.now()/140 + p.y*0.03)*12;
@@ -778,11 +610,9 @@
           ctx.shadowBlur = 16 + Math.random()*6;
           ctx.fill();
           ctx.restore();
-          // Remove if too old
           if (p.age > p.maxAge || p.radius < 0.8 || p.y < 0) emberParticles.splice(i,1);
         }
 
-        // Draw fire particles
         for (let i=fireParticles.length-1;i>=0;i--) {
           let p = fireParticles[i];
           p.x += p.vx + randomBetween(-0.36,0.36);
