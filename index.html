@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LAWS OF THERMODYNAMICS AND HEAT ENGINES</title>
   <style>
+    /* ... your CSS stays unchanged ... */
     body {
       font-family: 'Montserrat', Arial, sans-serif;
       margin: 0;
@@ -237,8 +238,6 @@
       or, equivalently:
       <span class="formula">&eta; = 1 - (Q<sub>out</sub> / Q<sub>in</sub>)</span>
     </p>
-    <!-- Placeholder for heat engine image -->
-    <!-- <img src="your-heat-engine-image.jpg" alt="Heat Engine Diagram" /> -->
   </section>
 
   <section id="internal-combustion">
@@ -256,8 +255,6 @@
       Internal-combustion engines follow the <strong>First Law of Thermodynamics</strong> as chemical (fuel) energy is transformed into work and heat.<br>
       The <strong>Second Law of Thermodynamics</strong> appears as not all fuel energy is converted to work—some is always lost as heat and exhaust.
     </p>
-    <!-- Placeholder for internal-combustion engine image -->
-    <!-- <img src="your-internal-combustion-image.jpg" alt="Internal Combustion Engine Diagram" /> -->
   </section>
 
   <section id="refrigerators">
@@ -279,8 +276,7 @@
       Coefficient of Performance (COP) for refrigerators:
       <span class="formula">COP = Q<sub>cold</sub> / W</span>
     </p>
-    <!-- Placeholder for refrigerator image -->
-    <!-- <img src="your-refrigerator-image.jpg" alt="Refrigerator Diagram" /> -->
+    <img src="refrigerator1.jpg" alt="Refrigerator Diagram">
   </section>
 
   <section id="second-law">
@@ -312,87 +308,167 @@
       <li><span class="formula">&eta; = W / Q<sub>in</sub></span> &nbsp; <em>(Efficiency of a heat engine)</em></li>
       <li><span class="formula">&Delta;S = Q / T</span> &nbsp; <em>(Change in entropy, where Q = heat transferred, T = temperature in Kelvin)</em></li>
     </ul>
-    <!-- Placeholder for entropy diagram -->
-    <!-- <img src="your-entropy-image.jpg" alt="Entropy Diagram" /> -->
   </section>
 
   <section id="quiz" class="quiz">
     <h2>Quiz</h2>
     <form id="thermo-quiz">
-      <p><strong>Q1:</strong> What does the second law of thermodynamics imply about entropy?</p>
-      <label>
-        <input type="radio" name="q1" value="A" />
-        It decreases in isolated systems
-      </label>
-      <label>
-        <input type="radio" name="q1" value="B" />
-        It stays constant in all systems
-      </label>
-      <label>
-        <input type="radio" name="q1" value="C" />
-        It increases in isolated systems
-      </label>
-      <p><strong>Q2:</strong> What is the main function of a heat engine?</p>
-      <label>
-        <input type="radio" name="q2" value="A" />
-        To transfer heat from a cold reservoir to a hot reservoir
-      </label>
-      <label>
-        <input type="radio" name="q2" value="B" />
-        To convert thermal energy into mechanical work
-      </label>
-      <label>
-        <input type="radio" name="q2" value="C" />
-        To decrease the entropy of the universe
-      </label>
-      <p><strong>Q3:</strong> According to the third law of thermodynamics, as temperature approaches absolute zero, the entropy of a perfect crystal:</p>
-      <label>
-        <input type="radio" name="q3" value="A" />
-        Becomes infinite
-      </label>
-      <label>
-        <input type="radio" name="q3" value="B" />
-        Approaches zero
-      </label>
-      <label>
-        <input type="radio" name="q3" value="C" />
-        Remains the same as at room temperature
-      </label>
+      <ol id="quiz-questions"></ol>
       <button type="button" onclick="checkQuiz()">Check Answers</button>
       <p id="quiz-result"></p>
     </form>
     <script>
+      // ... quizData and rendering logic unchanged ...
+      const quizData = [
+        {
+          q: "What does the second law of thermodynamics imply about entropy?",
+          choices: [
+            "It decreases in isolated systems",
+            "It stays constant in all systems",
+            "It increases in isolated systems",
+            "It fluctuates randomly"
+          ],
+          correct: 2
+        },
+        {
+          q: "What is the main function of a heat engine?",
+          choices: [
+            "To transfer heat from a cold reservoir to a hot reservoir",
+            "To convert thermal energy into mechanical work",
+            "To decrease the entropy of the universe",
+            "To create energy from nothing"
+          ],
+          correct: 1
+        },
+        {
+          q: "According to the third law of thermodynamics, as temperature approaches absolute zero, the entropy of a perfect crystal:",
+          choices: [
+            "Becomes infinite",
+            "Approaches zero",
+            "Remains the same as at room temperature",
+            "Doubles"
+          ],
+          correct: 1
+        },
+        {
+          q: "Which law states that energy is neither created nor destroyed?",
+          choices: [
+            "First Law of Thermodynamics",
+            "Second Law of Thermodynamics",
+            "Third Law of Thermodynamics",
+            "Law of Conservation of Momentum"
+          ],
+          correct: 0
+        },
+        {
+          q: "Which device uses work to transfer heat from a cold region to a hot region?",
+          choices: [
+            "Heat Engine",
+            "Refrigerator",
+            "Steam Engine",
+            "Combustion Chamber"
+          ],
+          correct: 1
+        },
+        {
+          q: "What is the formula for efficiency (&eta;) of a heat engine?",
+          choices: [
+            "&eta; = Q<sub>out</sub> / Q<sub>in</sub>",
+            "&eta; = W / Q<sub>in</sub>",
+            "&eta; = Q<sub>in</sub> / W",
+            "&eta; = Q / T"
+          ],
+          correct: 1
+        },
+        {
+          q: "Which cycle is commonly used in gasoline engines?",
+          choices: [
+            "Carnot Cycle",
+            "Otto Cycle",
+            "Rankine Cycle",
+            "Stirling Cycle"
+          ],
+          correct: 1
+        },
+        {
+          q: "What is the function of entropy in thermodynamics?",
+          choices: [
+            "Measure of pressure",
+            "Measure of disorder",
+            "Measure of energy",
+            "Measure of temperature"
+          ],
+          correct: 1
+        },
+        {
+          q: "Which of the following best describes the Second Law of Thermodynamics?",
+          choices: [
+            "Heat can flow spontaneously from cold to hot without work",
+            "Entropy of an isolated system never decreases",
+            "All engines are 100% efficient",
+            "Energy is destroyed in conversions"
+          ],
+          correct: 1
+        },
+        {
+          q: "Coefficient of Performance (COP) for a refrigerator is:",
+          choices: [
+            "COP = Q<sub>in</sub> / W",
+            "COP = W / Q<sub>in</sub>",
+            "COP = Q<sub>cold</sub> / W",
+            "COP = Q<sub>hot</sub> / W"
+          ],
+          correct: 2
+        }
+      ];
+
+      // Render quiz questions
+      const ol = document.getElementById('quiz-questions');
+      quizData.forEach((q, i) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<div>${q.q}</div>`;
+        q.choices.forEach((choice, cidx) => {
+          const inputId = `q${i}_c${cidx}`;
+          li.innerHTML += `
+            <label>
+              <input type="radio" name="q${i}" value="${cidx}" id="${inputId}"> <span>${choice}</span>
+            </label>
+          `;
+        });
+        ol.appendChild(li);
+      });
+
       function checkQuiz() {
-        const quiz = document.getElementById('thermo-quiz');
         let score = 0;
         let feedback = [];
-        if (quiz.q1.value === "C") {
-          score++;
-          feedback.push("Q1: Correct!");
-        } else if (quiz.q1.value) {
-          feedback.push("Q1: Incorrect. Entropy increases in isolated systems.");
-        } else {
-          feedback.push("Q1: Not answered.");
-        }
-        if (quiz.q2.value === "B") {
-          score++;
-          feedback.push("Q2: Correct!");
-        } else if (quiz.q2.value) {
-          feedback.push("Q2: Incorrect. The main function is to convert thermal energy into mechanical work.");
-        } else {
-          feedback.push("Q2: Not answered.");
-        }
-        if (quiz.q3.value === "B") {
-          score++;
-          feedback.push("Q3: Correct!");
-        } else if (quiz.q3.value) {
-          feedback.push("Q3: Incorrect. Entropy approaches zero.");
-        } else {
-          feedback.push("Q3: Not answered.");
+        let wrongs = [];
+        for (let i = 0; i < quizData.length; i++) {
+          const radios = document.getElementsByName('q' + i);
+          let answered = false;
+          let val = null;
+          for (let r of radios) {
+            if (r.checked) {
+              answered = true;
+              val = parseInt(r.value);
+              break;
+            }
+          }
+          if (answered) {
+            if (val === quizData[i].correct) {
+              score++;
+              feedback.push(`Q${i+1}: Correct!`);
+            } else {
+              feedback.push(`Q${i+1}: Incorrect. Correct answer is: "${quizData[i].choices[quizData[i].correct]}"`);
+              wrongs.push(i+1);
+            }
+          } else {
+            feedback.push(`Q${i+1}: Not answered.`);
+            wrongs.push(i+1);
+          }
         }
         const result = document.getElementById('quiz-result');
-        result.innerHTML = feedback.join("<br>") + `<br><br><span style="font-size:1.1em;">Your Score: ${score}/3</span>`;
-        result.style.color = score === 3 ? "green" : (score >= 2 ? "#fa8900" : "red");
+        result.innerHTML = feedback.join("<br>") + `<br><br><span style="font-size:1.1em;">Your Score: ${score}/${quizData.length}</span>`;
+        result.style.color = score === quizData.length ? "green" : (score >= quizData.length*0.7 ? "#fa8900" : "red");
       }
     </script>
   </section>
@@ -402,7 +478,6 @@
     <ul>
       <li>Serway, R.A., & Jewett, J.W. <em>Physics for Scientists and Engineers</em></li>
       <li><a href="https://physics.info/thermodynamics" target="_blank">Physics.info: Thermodynamics</a></li>
-      <li><a href="https://en.wikipedia.org/wiki/Thermodynamics" target="_blank">Wikipedia: Thermodynamics</a></li>
       <li><a href="https://www.ck12.org/physics/laws-of-thermodynamics/" target="_blank">CK-12: Laws of Thermodynamics</a></li>
       <li><a href="https://www.ck12.org/physics/heat-engines/" target="_blank">CK-12: Heat Engines</a></li>
       <li><a href="https://www.ck12.org/physics/refrigerators-and-heat-pumps/" target="_blank">CK-12: Refrigerators and Heat Pumps</a></li>
