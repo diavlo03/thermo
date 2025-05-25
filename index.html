@@ -99,6 +99,8 @@
         transition: box-shadow 0.6s;
         animation: fadeIn 1.2s;
         display: none;
+        text-align: justify;
+        text-justify: inter-word;
       }
       section.active {
         display: block;
@@ -114,6 +116,8 @@
         letter-spacing: 1.5px;
         animation: slideInLeft 1s;
         margin-left: 0.1em;
+        text-align: center;
+        text-justify: auto;
       }
       @keyframes slideInLeft {
         from { transform: translateX(-60px); opacity: 0;}
@@ -125,6 +129,8 @@
         letter-spacing: 1px;
         animation: fadeIn 1.6s;
         margin-left: 0.2em;
+        text-align: justify;
+        text-justify: inter-word;
       }
       .law-tag {
         display: inline-block;
@@ -148,6 +154,22 @@
         font-size: 1.1em;
         margin: 0.3em 0;
       }
+      .formula-table {
+        margin: 1.2em auto 1.2em auto;
+        border-collapse: separate;
+        border-spacing: 0 0.5em;
+        width: 100%;
+        max-width: 620px;
+      }
+      .formula-table td {
+        vertical-align: middle;
+        font-size: 1.07em;
+        text-align: left;
+        padding-top: 0.13em;
+        padding-bottom: 0.13em;
+        border: none;
+        background: none;
+      }
       .quiz {
         margin-top: 2rem;
         padding: 1.2rem 2.5rem 1.2rem 3rem;
@@ -156,6 +178,8 @@
         border-radius: 12px;
         box-shadow: 0 2px 10px -6px #2222;
         animation: pulse 2s infinite alternate;
+        text-align: justify;
+        text-justify: inter-word;
       }
       @keyframes pulse {
         from { box-shadow: 0 2px 10px -6px #2222;}
@@ -204,25 +228,33 @@
         border-radius: 12px;
         box-shadow: 0 2px 16px -6px #e02c0066;
         animation: fadeIn 2s;
+        text-align: center !important;
       }
       ul, ol {
-        padding-left: 2.2em;
+        padding-left: 2.8em;
         margin-bottom: 1.3em;
+        text-align: justify;
+        text-justify: inter-word;
       }
       ul li, ol li {
         margin-bottom: 0.6em;
         line-height: 1.7;
+        text-align: justify;
+        text-justify: inter-word;
       }
       p {
-        margin-left: 1.1em;
-        margin-right: 1em;
+        margin-left: 2em;
+        margin-right: 2em;
         text-indent: 2em;
         line-height: 1.7;
+        text-align: justify;
+        text-justify: inter-word;
       }
       @media (max-width: 600px) {
         .nav-btn-group { flex-direction: column; gap: 0.5rem; }
         section, .quiz { padding: 1rem; }
         img, video { margin-left: auto; margin-right: auto; }
+        p { margin-left: 0.7em; margin-right: 0.7em; }
       }
     </style>
   </head>
@@ -264,16 +296,21 @@
         <li>The remaining energy is expelled as waste heat (<span class="formula">Q<sub>out</sub></span>) to the cold reservoir.</li>
       </ul>
       <p>
-        The <strong>First Law of Thermodynamics</strong> (law of energy conservation) is honored as energy is neither created nor destroyed—just transferred and transformed.<br>
-        The <strong>Second Law of Thermodynamics</strong> is illustrated because not all input heat can become work; some energy must be expelled as waste heat.
+        The <strong>First Law of Thermodynamics</strong> (law of energy conservation) is honored as energy is neither created nor destroyed—just transferred and transformed.
       </p>
       <p>
-        Efficiency of a heat engine:
-        <span class="formula">&eta; = W / Q<sub>in</sub></span>
-        <br>
-        or, equivalently:
-        <span class="formula">&eta; = 1 - (Q<sub>out</sub> / Q<sub>in</sub>)</span>
+        The <strong>Second Law of Thermodynamics</strong> is illustrated because not all input heat can become work; some energy must be expelled as waste heat.
       </p>
+      <table class="formula-table">
+        <tr>
+          <td style="text-align:right; padding-right:1em;">Efficiency of a heat engine:</td>
+          <td><span class="formula">&eta; = W / Q<sub>in</sub></span></td>
+        </tr>
+        <tr>
+          <td style="text-align:right; padding-right:1em;">or, equivalently:</td>
+          <td><span class="formula">&eta; = 1 - (Q<sub>out</sub> / Q<sub>in</sub>)</span></td>
+        </tr>
+      </table>
       <p>
         The diagram below shows a simplified model of a typical heat engine operating between two thermal reservoirs.
       </p>
@@ -319,7 +356,9 @@
         <li>They rely on cycles (such as the Otto or Diesel cycle) to manage intake, compression, power, and exhaust strokes.</li>
       </ul>
       <p>
-        Internal-combustion engines follow the <strong>First Law of Thermodynamics</strong> as chemical (fuel) energy is transformed into work and heat.<br>
+        Internal-combustion engines follow the <strong>First Law of Thermodynamics</strong> as chemical (fuel) energy is transformed into work and heat.
+      </p>
+      <p>
         The <strong>Second Law of Thermodynamics</strong> appears as not all fuel energy is converted to work—some is always lost as heat and exhaust.
       </p>
       <p>
@@ -372,7 +411,9 @@
         <li>Examples include home refrigerators, air conditioners, and heat pumps.</li>
       </ul>
       <p>
-        According to the <strong>First Law of Thermodynamics</strong>, the total energy is conserved (work input plus heat taken from the cold area equals heat expelled to the warm area).<br>
+        According to the <strong>First Law of Thermodynamics</strong>, the total energy is conserved (work input plus heat taken from the cold area equals heat expelled to the warm area).
+      </p>
+      <p>
         The <strong>Second Law of Thermodynamics</strong> explains why refrigerators need external work: heat doesn’t spontaneously flow from cold to hot.
       </p>
       <p>
