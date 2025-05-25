@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LAWS OF THERMODYNAMICS AND HEAT ENGINES</title>
   <style>
-    /* ... your CSS stays unchanged ... */
     body {
       font-family: 'Montserrat', Arial, sans-serif;
       margin: 0;
@@ -196,7 +195,7 @@
 <body>
   <canvas id="fire-canvas"></canvas>
   <header>
-    <h1>LAWS OF THERMODYNAMICS AND HEAT ENGINES</h1>
+    <h1>LAWS OF THERMODYNAMICS AND HEAT ENGINES <span style="font-size:0.7em; color:#ff8000;">v6</span></h1>
   </header>
   <nav class="nav-btn-group" id="navBtnGroup">
     <button class="nav-btn active" data-target="intro">Introduction</button>
@@ -238,6 +237,36 @@
       or, equivalently:
       <span class="formula">&eta; = 1 - (Q<sub>out</sub> / Q<sub>in</sub>)</span>
     </p>
+    <p>
+      The diagram below shows a simplified model of a typical heat engine operating between two thermal reservoirs. This model is a foundational concept in thermodynamics and can be found in many physics textbooks, such as Serway & Jewett, and in the CK-12 and Physics.info references.
+    </p>
+    <img src="heatengine1.png" alt="Heat Engine Diagram">
+    <p>
+      Here’s how the process works, step by step:
+    </p>
+    <ul>
+      <li>
+        <strong>Hot Reservoir (T<sub>h</sub>):</strong> This is the source of thermal energy at a high temperature. The engine absorbs a quantity of heat energy, <strong>Q<sub>in</sub></strong>, from this reservoir.
+      </li>
+      <li>
+        <strong>Engine (Working Substance):</strong> The working substance could be a gas in a piston, steam in a turbine, or any medium that can absorb and release heat while expanding and contracting. As the working substance cycles, it does mechanical work <strong>W</strong> (for example, moving a piston or turning a generator).
+      </li>
+      <li>
+        <strong>Cold Reservoir (T<sub>c</sub>):</strong> Not all heat absorbed from the hot reservoir can be converted to work. Some energy, <strong>Q<sub>out</sub></strong>, must be expelled to a colder reservoir, as required by the second law of thermodynamics.
+      </li>
+      <li>
+        <strong>Energy Flow:</strong> The arrows in the diagram show the flow of energy: <strong>Q<sub>in</sub></strong> enters from the hot reservoir, <strong>Q<sub>out</sub></strong> exits to the cold reservoir, and the difference between them is the useful work <strong>W</strong> extracted by the engine (<strong>W = Q<sub>in</sub> - Q<sub>out</sub></strong>).
+      </li>
+      <li>
+        <strong>Efficiency and the Diagram:</strong> The diagram directly illustrates the efficiency formula above. The fraction of input heat, <strong>Q<sub>in</sub></strong>, that is converted to work (<strong>W</strong>) determines the engine's efficiency <span class="formula">&eta; = W / Q<sub>in</sub></span>. The remainder (<strong>Q<sub>out</sub></strong>) is the unavoidable waste heat expelled to the cold reservoir, which is why the alternative efficiency expression <span class="formula">&eta; = 1 - (Q<sub>out</sub> / Q<sub>in</sub>)</span> is also shown. The closer <strong>Q<sub>out</sub></strong> is to zero, the more efficient the engine—however, according to the second law, <strong>Q<sub>out</sub></strong> can never be zero in a real engine.
+      </li>
+      <li>
+        <strong>Typical Examples:</strong> Car engines, steam turbines, and power plants all operate on this basic principle. In all real applications, friction, heat leaks, and other losses further reduce actual efficiency below the theoretical maximum.
+      </li>
+    </ul>
+    <p>
+      This diagram helps visualize the key functions and constraints of all heat engines, making it easier to understand why both the first and second laws of thermodynamics govern their operation, and how the efficiency formulas arise from the energy flows within the system.
+    </p>
   </section>
 
   <section id="internal-combustion">
@@ -273,10 +302,67 @@
       The <strong>Second Law of Thermodynamics</strong> explains why refrigerators need external work: heat doesn’t spontaneously flow from cold to hot.
     </p>
     <p>
-      Coefficient of Performance (COP) for refrigerators:
+      <strong>General COP:</strong>
       <span class="formula">COP = Q<sub>cold</sub> / W</span>
+      <br>
+      <strong>COP for a perfect (Carnot) refrigerator:</strong>
+      <span class="formula">COP<sub>Carnot</sub> = T<sub>cold</sub> / (T<sub>hot</sub> - T<sub>cold</sub>)</span>
+    </p>
+    <p>
+      The diagram below shows how a refrigerator keeps food and drinks cold by moving heat from inside the fridge to the outside. The process works in a closed loop and involves four main parts: the <strong>evaporator</strong>, <strong>expansion valve</strong>, <strong>condenser</strong>, and <strong>compressor</strong>.
+    </p>
+    <p>
+      Here’s how each step works:
+    </p>
+    <ul>
+      <li>
+        <strong>Evaporator:</strong> Inside the refrigerator, the refrigerant is at a low temperature and low pressure. In this state, it absorbs heat from the food and air inside, causing it to evaporate and turn into a cold gas. This is what keeps the inside of the fridge cool.
+      </li>
+      <li>
+        <strong>Compressor:</strong> The compressor squeezes this cold gas, making it hot and increasing its pressure. Now, the refrigerant is a hot, high-pressure gas, which is pushed towards the condenser.
+      </li>
+      <li>
+        <strong>Condenser:</strong> At the back (or bottom) of the fridge, the hot, high-pressure gas releases its heat to the outside air and cools down, turning into a liquid. This is why the back of your refrigerator feels warm.
+      </li>
+      <li>
+        <strong>Expansion Valve:</strong> The high-pressure liquid refrigerant now passes through the expansion valve, where its pressure quickly drops. This makes the refrigerant cold again, and it re-enters the evaporator to repeat the cycle.
+      </li>
+      <li>
+        <strong>Drying Filter:</strong> There is also a drying filter that removes moisture and tiny particles from the refrigerant, helping the system run smoothly.
+      </li>
+    </ul>
+    <p>
+      The colored arrows and labels in the diagram help you follow the flow and state of the refrigerant through each stage—showing whether it is a gas or liquid, and whether it is hot or cold. By constantly cycling the refrigerant through these steps, the refrigerator is able to take heat from inside the fridge and move it outside, keeping your food cold and fresh.
     </p>
     <img src="refrigerator1.jpg" alt="Refrigerator Diagram">
+
+    <h3>The Carnot Cycle and the Reversed Carnot Cycle</h3>
+    <p>
+      To understand the ultimate limits of a refrigerator’s performance, we consider the <strong>Carnot cycle</strong> and its reverse.
+    </p>
+    <ul>
+      <li>
+        The <strong>Carnot cycle</strong> describes an idealized heat engine that operates between two temperature reservoirs with maximum possible efficiency, determined only by the temperatures of the hot and cold reservoirs.
+        <br>
+        <span class="formula">&eta;<sub>Carnot</sub> = 1 - (T<sub>cold</sub>/T<sub>hot</sub>)</span>
+      </li>
+      <li>
+        The <strong>reversed Carnot cycle</strong> is a theoretical model for a perfect refrigerator or heat pump. When run in reverse, the Carnot engine absorbs heat from the cold reservoir and releases it to the hot reservoir, using the minimum work possible for a given amount of heat transfer.
+      </li>
+      <li>
+        The maximum possible <strong>coefficient of performance (COP)</strong> for any refrigerator is set by the reversed Carnot cycle:
+        <br>
+        <span class="formula">COP<sub>Carnot</sub> = T<sub>cold</sub> / (T<sub>hot</sub> - T<sub>cold</sub>)</span>
+        <br>
+        Here, <strong>T<sub>cold</sub></strong> and <strong>T<sub>hot</sub></strong> are the absolute temperatures (in Kelvin) of the inside and outside of the fridge, respectively.
+      </li>
+    </ul>
+    <p>
+      In the <strong>refrigerator diagram above</strong>, the flow of the refrigerant and the direction of heat transfer represent the practical implementation of the reversed Carnot cycle. While real refrigerators are less efficient than a Carnot refrigerator due to friction, non-ideal materials, and other losses, the Carnot cycle sets the <strong>theoretical upper limit</strong> for efficiency and performance.
+    </p>
+    <p>
+      In summary, the reversed Carnot cycle helps us understand how refrigerators can ideally transfer heat from cold to hot, and why their efficiency always depends on the temperature difference between the inside and outside of the refrigerator.
+    </p>
   </section>
 
   <section id="second-law">
@@ -318,7 +404,7 @@
       <p id="quiz-result"></p>
     </form>
     <script>
-      // ... quizData and rendering logic unchanged ...
+      // 10-question quiz
       const quizData = [
         {
           q: "What does the second law of thermodynamics imply about entropy?",
